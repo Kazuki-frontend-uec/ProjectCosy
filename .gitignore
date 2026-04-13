@@ -1,0 +1,21 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.python-version
+uv.lock
+pyproject.toml
+
+dataset/
+pretrained_models/
+metadata.tsv
+
+*.onnx
+SpeechTokenizer/speech_tokenizer_v2.onnx
+SpeechTokenizer/speech_tokenizer_v2.batch.onnx
