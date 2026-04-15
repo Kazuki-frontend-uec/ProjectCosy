@@ -8,7 +8,7 @@ class WhisperFSQEncoder(nn.Module):
         super().__init__()
         self.device = torch.device(device)
 
-        # 1. 既存のEncoder (例: Whisper)
+        # 1. 既存のEncoder、Whisperのロード
         self.whisper_model = whisper.load_model(model_name, device=device)
         self.encoder = self.whisper_model.encoder
         hidden_dim = self.encoder.ln_post.weight.shape[0] # 512
@@ -17,7 +17,7 @@ class WhisperFSQEncoder(nn.Module):
         self.fsq = FSQ(levels=levels) # 3^8 = 6561
         dim_fsq = len(levels) # 8次元
 
-        # 3. 学習が必要な層 (Projector)
+        # 3. Projector層の学習
         self.project_in = nn.Linear(hidden_dim, dim_fsq)
         self.project_out = nn.Linear(dim_fsq, hidden_dim)
 
@@ -39,7 +39,7 @@ class WhisperFSQEncoder(nn.Module):
 
         # FSQの低次元空間へ投影 -> 量子化 -> 元の次元へ戻す
         z = self.project_in(features)
-        z_q, indices = self.fsq(z)      # ここでSTEが走り、勾配が維持される
+        z_q, indices = self.fsq(z)      # STE、勾配が維持される
         recon_features = self.project_out(z_q)
 
         return features, recon_features, indices

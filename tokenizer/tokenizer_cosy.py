@@ -155,13 +155,13 @@ EMOTION = {
 }
 
 TTS_Vocal_Token = {
-    "TTS/B": "TTS/B",
-    "TTS/O": "TTS/O",
-    "TTS/Q": "TTS/Q",
-    "TTS/A": "TTS/A",
-    "TTS/CO": "TTS/CO",
-    "TTS/CL": "TTS/CL",
-    "TTS/H": "TTS/H",
+    "TTS/B": "TTS/B",   # Begin（開始・ベース音声）
+    "TTS/O": "TTS/O",   # Original / Ordinary（通常発話）
+    "TTS/Q": "TTS/Q",   # Question（疑問調）
+    "TTS/A": "TTS/A",   # Accent / Affect（強調）
+    "TTS/CO": "TTS/CO", # Continuation（継続）
+    "TTS/CL": "TTS/CL", # Close（終了・区切り）
+    "TTS/H": "TTS/H",   # High / Happy（高揚・高ピッチ）
     **{f"TTS/SP{i:02d}": f"TTS/SP{i:02d}" for i in range(1, 14)}
 }
 

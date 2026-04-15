@@ -301,7 +301,7 @@ class QwenTokenizer:
         # 1. テキスト用トークナイザ (Qwen)
         self.llm_tokenizer = AutoTokenizer.from_pretrained(llm_model_path)
 
-        # 2. 音声用トークナイザ (自作 SpeechTokenizer)
+        # 2. 音声用トークナイザ (SpeechTokenizer、自作 or CosyVoice2)
         self.speech_tokenizer = SpeechTokenizer(checkpoint_path=speech_tokenizer_path, device=device, token_offset=0)
 
         # 3. 特殊トークンの定義
@@ -310,7 +310,7 @@ class QwenTokenizer:
             "eo_audio": "</Speech>",          # 音声区間終了
             "eop": "<|endofprompt|>",         # プロンプトと生成対象の境界
             # "breath": "[breath]",            # 息継ぎ（日本語の自然さに重要）
-            # "happy": "<|HAPPY|>",            # 感情制御
+            # "happy": "<|HAPPY|>",            # 感情制御系
             # "sad": "<|SAD|>",
             # "neutral": "<|NEUTRAL|>"
         }
@@ -359,7 +359,7 @@ class QwenTokenizer:
 
     def decode(self, input_ids):
         """
-        デバッグ用：音声トークンを [AUDIO_ID] という形式で可視化しつつデコードする
+        デバッグ用：音声トークンを [AUDIO_ID] という形式で可視化しつつデコード
         """
         if torch.is_tensor(input_ids):
             input_ids = input_ids.flatten().tolist()
@@ -376,7 +376,7 @@ class QwenTokenizer:
 
         return "".join(tokens)
 
-# --- 使用例 ---
+# 使用
 if __name__ == "__main__":
     # ckpt = "tokenizer/SpeechTokenizer/exp/wf_4096_best.pth"
     # tknz = SpeechTokenizer(checkpoint_path=ckpt)

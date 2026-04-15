@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import whisper
 from whisper.audio import pad_or_trim
-from funasr import AutoModel
+# from funasr import AutoModel
 
 class WhisperEncoder(nn.Module):
     def __init__(self, model_name="base", device="cuda"):
