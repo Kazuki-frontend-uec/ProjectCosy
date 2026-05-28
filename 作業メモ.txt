@@ -1,0 +1,7 @@
+5/25
+今日から作業メモをつけることとする。基本は箇条書きで
+・ディレクトリ整理、dataset, binを新たに作成、旧datasetー＞dataに変更
+・dataset 内で IterableDataset ベースのdatasetを作成（CosyVoice2準拠）、逐次処理に変更
+・cosyvoice2 = (T,)で、wavtokenizer = (1,1,T) なことが判明、dataset内load_audio_tokensでflatten化を追加
+・研究会に向けたものはまとめて「speechLM」を親ディレクトリとした。その結果パスが諸々変わった。
+

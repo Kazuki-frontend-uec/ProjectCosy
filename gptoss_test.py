@@ -43,13 +43,12 @@ messages = [
     {"role": "user", "content": "5・7・5で冬をテーマにした俳句を日本語で作ってください。"},
 ]
 
-# 推論努力レベルを設定（low/medium/high）
 inputs = tokenizer.apply_chat_template(
     messages,
     add_generation_prompt = True,
     return_tensors = "pt",
     return_dict = True,
-    reasoning_effort = "medium",  # ここで設定！
+    reasoning_effort = "medium",  # 推論努力レベルを設定（low/medium/high）
 ).to(model.device)
 
 _ = model.generate(**inputs, max_new_tokens = 1024, streamer = TextStreamer(tokenizer))

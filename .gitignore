@@ -12,9 +12,11 @@ wheels/
 uv.lock
 pyproject.toml
 
-dataset/
-pretrained_models/
+data/
+CosyVoice_pretrained_models/
 metadata.tsv
+WavTokenizer
+
 
 *.onnx
 SpeechTokenizer/speech_tokenizer_v2.onnx
